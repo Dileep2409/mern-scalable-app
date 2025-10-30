@@ -1,0 +1,3 @@
+✅ Connected to MongoDB
+🚀 Server running on http://localhost:5001
+✅ Updated client .env to use port 5001
