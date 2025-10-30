@@ -1,0 +1,154 @@
+📘 **API Documentation for Scalable Web App**
+
+**Base URL:**  
+`http://localhost:5000/api`  
+(If backend runs on port 5001, use `http://localhost:5001/api` instead)
+
+---
+
+## 🔐 AUTH ROUTES
+
+### 1️⃣ POST `/auth/signup`
+**Description:** Register a new user  
+**Request Body (JSON):**
+```json
+{
+  "name": "John Doe",
+  "email": "john@gmail.com",
+  "password": "123456"
+}
+```
+**Response (Example):**
+```json
+{
+  "message": "User registered successfully",
+  "token": "<jwt_token>"
+}
+```
+
+---
+
+### 2️⃣ POST `/auth/login`
+**Description:** Login user and get JWT token  
+**Request Body (JSON):**
+```json
+{
+  "email": "john@gmail.com",
+  "password": "123456"
+}
+```
+**Response (Example):**
+```json
+{
+  "message": "Login successful",
+  "token": "<jwt_token>"
+}
+```
+
+---
+
+### 3️⃣ GET `/auth/me`
+**Description:** Get logged-in user profile  
+**Headers:**
+```
+Authorization: Bearer <jwt_token>
+```
+**Response (Example):**
+```json
+{
+  "_id": "671e9b1a8a7b6d3a7fabc123",
+  "name": "John Doe",
+  "email": "john@gmail.com"
+}
+```
+
+---
+
+## 🗒️ TASK ROUTES
+
+### 1️⃣ GET `/tasks`
+**Description:** Fetch all tasks (requires login)  
+**Headers:**
+```
+Authorization: Bearer <jwt_token>
+```
+**Response (Example):**
+```json
+[
+  {
+    "_id": "671ea1f28a7b6d3a7fabd456",
+    "title": "Learn React",
+    "description": "Finish React basics"
+  }
+]
+```
+
+---
+
+### 2️⃣ POST `/tasks`
+**Description:** Create new task  
+**Headers:**
+```
+Authorization: Bearer <jwt_token>
+```
+**Request Body (JSON):**
+```json
+{
+  "title": "Learn React",
+  "description": "Finish React basics"
+}
+```
+**Response (Example):**
+```json
+{
+  "message": "Task created successfully"
+}
+```
+
+---
+
+### 3️⃣ PUT `/tasks/:id`
+**Description:** Update existing task  
+**Headers:**
+```
+Authorization: Bearer <jwt_token>
+```
+**Request Body (JSON):**
+```json
+{
+  "title": "Learn React Advanced"
+}
+```
+**Response (Example):**
+```json
+{
+  "message": "Task updated successfully"
+}
+```
+
+---
+
+### 4️⃣ DELETE `/tasks/:id`
+**Description:** Delete a task by ID  
+**Headers:**
+```
+Authorization: Bearer <jwt_token>
+```
+**Response (Example):**
+```json
+{
+  "message": "Task deleted successfully"
+}
+```
+
+---
+
+## ⚙️ Notes
+- All routes that modify or fetch data require JWT authentication.
+- Use Postman or Thunder Client to test endpoints.
+- Ensure backend is running before sending API requests.
+
+---
+
+✅ **Developer Tip:**
+For production deployment, replace `localhost` with your hosted backend URL (e.g., Render/AWS link).
